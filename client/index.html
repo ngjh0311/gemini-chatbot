@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Google Gemini</title>
+    <title>Gemini Chatbot</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
     <link rel="stylesheet" href="styles.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -12,11 +12,46 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
     />
+    <style>
+      /* Image preview styling */
+      .image-preview { margin-top:8px; }
+      .preview-wrapper {
+        display: inline-block;
+        position: relative;
+        padding: 8px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+      }
+      .preview-img { max-width:200px; max-height:120px; display:block; border-radius:6px; }
+      .remove-image { 
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 24px;
+        height: 24px;
+        padding: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: var(--secondary-color);
+        border: none;
+        color: var(--text-color);
+        font-size: 16px;
+        transition: background 0.2s ease;
+        transform: translate(50%, -50%);
+      }
+      .remove-image:hover {
+        background: var(--secondary-hover-color);
+      }
+      .attached-image { max-width:240px; max-height:120px; display:block; margin:6px 0; border-radius:6px; }
+    </style>
   </head>
   <body>
     <header class="header">
-      <h2 class="title">Google Gemini</h2>
-      <h4 class="subtitle">Ask Gemini anything...</h4>
+      <h2 class="title">AI-Powered EHSIP Assistance</h2>
+      <h4 class="subtitle">Powered by Gemini 2.0 Flash</h4>
 
       <!-- Suggestions -->
       <ul class="suggestion-list">
@@ -62,7 +97,11 @@
           />
           <button class="icon material-symbols-rounded">send</button>
         </div>
+        <div id="image-preview" class="image-preview" aria-hidden="true"></div>
+        <!-- Hidden file input for attachment -->
+        <input type="file" id="image-input" accept="image/*" style="display:none" />
         <div class="action-buttons">
+          <button type="button" id="attach-button" class="icon material-symbols-rounded" title="Attach image">add</button>
           <span id="toggle-theme-button" class="icon material-symbols-rounded"
             >light_mode</span
           >
